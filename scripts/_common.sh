@@ -6,11 +6,9 @@
 
 install_apprise() {
     if [ ! -x "$data_dir/venv/bin/python" ]; then
-        ynh_script_progression "Creating the Apprise virtual environment..."
         ynh_exec_as_app python3 -m venv "$data_dir/venv"
     fi
 
-    ynh_script_progression "Installing Apprise CLI..."
     ynh_hide_warnings ynh_exec_as_app "$data_dir/venv/bin/pip" install \
         --no-cache-dir --disable-pip-version-check "apprise==1.9.6"
 }
