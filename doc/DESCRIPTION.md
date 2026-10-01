@@ -1,0 +1,3 @@
+Cleanuparr is an advanced download manager for the Servarr ecosystem. It connects to Sonarr, Radarr, Lidarr, Readarr and other supported *arr applications together with common download clients to clean stalled, failed, blocked and orphaned downloads.
+
+The application includes its own web interface and authentication. Configure the download clients and *arr applications from the Cleanuparr interface after installation.

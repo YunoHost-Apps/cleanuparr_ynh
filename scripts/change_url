@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+source _common.sh
+source /usr/share/yunohost/helpers
+
+#=================================================
+# STOP SYSTEMD SERVICE
+#=================================================
+ynh_script_progression "Stopping $app's systemd service..."
+ynh_systemctl --service="$app" --action="stop"
+
+#=================================================
+# UPDATE NGINX AND BASE PATH
+#=================================================
+ynh_script_progression "Updating Cleanuparr URL configuration..."
+
+ynh_config_change_url_nginx
+ynh_config_add_systemd
+set_base_path_for_service
+
+#=================================================
+# START SYSTEMD SERVICE
+#=================================================
+ynh_script_progression "Starting Cleanuparr..."
+ynh_systemctl --service="$app" --action="start" \
+    --log_path="/var/log/$app/$app.log" \
+    --wait_until="Application started"
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_script_progression "Change of URL completed for $app"

@@ -1,0 +1,63 @@
+#!/bin/bash
+
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+source _common.sh
+source /usr/share/yunohost/helpers
+
+#=================================================
+# STOP SYSTEMD SERVICE
+#=================================================
+ynh_script_progression "Stopping $app's systemd service..."
+ynh_systemctl --service="$app" --action="stop"
+
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_script_progression "Upgrading Cleanuparr source files..."
+
+# Runtime data is stored in data_dir and is therefore not replaced here.
+ynh_setup_source --dest_dir="$install_dir" --full_replace
+chmod 755 "$install_dir/Cleanuparr"
+
+# Keep Apprise available after upgrades from older package revisions.
+mkdir -p "$data_dir/logs"
+chown -R "$app:$app" "$data_dir"
+install_apprise
+
+#=================================================
+# REAPPLY SYSTEM CONFIGURATION
+#=================================================
+ynh_script_progression "Upgrading system configurations related to $app..."
+
+mkdir -p "/var/log/$app"
+touch "/var/log/$app/$app.log"
+chown -R "$app:$app" "/var/log/$app"
+
+ynh_config_add_nginx
+
+ynh_config_add_systemd
+set_base_path_for_service
+
+yunohost service add "$app" \
+    --description="Advanced download manager for the Servarr ecosystem" \
+    --log="/var/log/$app/$app.log"
+
+ynh_config_add_logrotate
+
+#=================================================
+# START SYSTEMD SERVICE
+#=================================================
+ynh_script_progression "Starting Cleanuparr..."
+
+ynh_systemctl --service="$app" --action="start" \
+    --log_path="/var/log/$app/$app.log" \
+    --wait_until="Application started"
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_script_progression "Upgrade of $app completed"

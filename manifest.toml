@@ -1,0 +1,75 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/main/schemas/manifest.v2.schema.json
+
+packaging_format = 2
+
+id = "cleanuparr"
+name = "Cleanuparr"
+description.en = "Advanced download manager for the Servarr ecosystem"
+description.fr = "Gestionnaire avancé de téléchargements pour l'écosystème Servarr"
+
+version = "2.10.8~ynh1"
+
+maintainers = ["Jean-Benoit"]
+
+[upstream]
+license = "GPL-3.0-or-later"
+website = "https://cleanuparr.github.io/Cleanuparr/"
+admindoc = "https://cleanuparr.github.io/Cleanuparr/docs/installation/"
+userdoc = "https://cleanuparr.github.io/Cleanuparr/docs/"
+code = "https://github.com/Cleanuparr/Cleanuparr"
+
+[integration]
+yunohost = ">= 12.1.17"
+helpers_version = "2.1"
+architectures = ["amd64", "arm64"]
+multi_instance = true
+
+ldap = false
+sso = false
+
+disk = "350M"
+ram.build = "512M"
+ram.runtime = "512M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/cleanuparr"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+[resources]
+
+    [resources.sources.main]
+    in_subdir = true
+    format = "zip"
+    amd64.url = "https://github.com/Cleanuparr/Cleanuparr/releases/download/v2.10.8/Cleanuparr-2.10.8-linux-amd64.zip"
+    amd64.sha256 = "9c44363d1e2f4986c51a4af2e24650c065f82d46c6d9c55fa7a176eb39944879"
+    arm64.url = "https://github.com/Cleanuparr/Cleanuparr/releases/download/v2.10.8/Cleanuparr-2.10.8-linux-arm64.zip"
+    arm64.sha256 = "21fb3a7ca5cc8e1a52a2649e56f8fed0f70cf0e8502c685aa47ef4d1e86441c1"
+
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.upstream = "https://github.com/Cleanuparr/Cleanuparr"
+    autoupdate.asset.amd64 = "Cleanuparr-.*-linux-amd64\\.zip"
+    autoupdate.asset.arm64 = "Cleanuparr-.*-linux-arm64\\.zip"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.data_dir]
+    subdirs = ["logs", "venv"]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.ports]
+    main.default = 11011
+
+    [resources.apt]
+    packages = "ca-certificates, libicu-dev, libssl-dev, python3, python3-venv"

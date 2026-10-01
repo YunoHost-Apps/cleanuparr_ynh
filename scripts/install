@@ -1,0 +1,63 @@
+#!/bin/bash
+
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
+source _common.sh
+source /usr/share/yunohost/helpers
+
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_script_progression "Setting up Cleanuparr source files..."
+
+ynh_setup_source --dest_dir="$install_dir"
+chmod 755 "$install_dir/Cleanuparr"
+
+#=================================================
+# CREATE DATA DIRECTORIES
+#=================================================
+ynh_script_progression "Preparing Cleanuparr data directories..."
+
+mkdir -p "$data_dir/logs"
+chown -R "$app:$app" "$data_dir"
+
+# Cleanuparr uses this directory for SQLite databases, Data Protection keys
+# and its internal rolling logs. Keep it outside the replaceable install dir.
+install_apprise
+
+#=================================================
+# SYSTEM CONFIGURATION
+#=================================================
+ynh_script_progression "Adding system configurations related to $app..."
+
+mkdir -p "/var/log/$app"
+touch "/var/log/$app/$app.log"
+chown -R "$app:$app" "/var/log/$app"
+
+ynh_config_add_nginx
+
+ynh_config_add_systemd
+set_base_path_for_service
+
+yunohost service add "$app" \
+    --description="Advanced download manager for the Servarr ecosystem" \
+    --log="/var/log/$app/$app.log"
+
+ynh_config_add_logrotate
+
+#=================================================
+# START SYSTEMD SERVICE
+#=================================================
+ynh_script_progression "Starting Cleanuparr..."
+
+ynh_systemctl --service="$app" --action="start" \
+    --log_path="/var/log/$app/$app.log" \
+    --wait_until="Application started"
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_script_progression "Installation of $app completed"
