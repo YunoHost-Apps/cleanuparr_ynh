@@ -23,5 +23,8 @@ set_base_path_for_service() {
             --file="$service_file"
     fi
 
+    # Keep YunoHost's checksum in sync after normalizing the root path.
+    ynh_store_file_checksum "$service_file"
+
     systemctl daemon-reload
 }
