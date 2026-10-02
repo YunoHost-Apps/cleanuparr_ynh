@@ -4,7 +4,7 @@
 # IMPORT GENERIC HELPERS
 #=================================================
 
-source _common.sh
+source ../settings/scripts/_common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
@@ -17,6 +17,7 @@ chown -R "$app:$app" "$install_dir" "$data_dir"
 chmod 755 "$install_dir/Cleanuparr"
 
 # A backup created before Apprise was introduced may not contain the venv.
+ynh_script_progression "Installing Apprise CLI..."
 install_apprise
 
 #=================================================

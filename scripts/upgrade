@@ -25,6 +25,7 @@ chmod 755 "$install_dir/Cleanuparr"
 # Keep Apprise available after upgrades from older package revisions.
 mkdir -p "$data_dir/logs"
 chown -R "$app:$app" "$data_dir"
+ynh_script_progression "Installing Apprise CLI..."
 install_apprise
 
 #=================================================

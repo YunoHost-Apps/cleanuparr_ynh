@@ -25,6 +25,7 @@ chown -R "$app:$app" "$data_dir"
 
 # Cleanuparr uses this directory for SQLite databases, Data Protection keys
 # and its internal rolling logs. Keep it outside the replaceable install dir.
+ynh_script_progression "Installing Apprise CLI..."
 install_apprise
 
 #=================================================
