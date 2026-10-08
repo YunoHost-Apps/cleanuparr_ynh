@@ -7,7 +7,7 @@ name = "Cleanuparr"
 description.en = "Advanced download manager for the Servarr ecosystem"
 description.fr = "Gestionnaire avancé de téléchargements pour l'écosystème Servarr"
 
-version = "2.10.8~ynh1"
+version = "2.10.9~ynh1"
 
 maintainers = ["Jean-Benoit"]
 
@@ -48,10 +48,10 @@ ram.runtime = "512M"
     [resources.sources.main]
     in_subdir = true
     format = "zip"
-    amd64.url = "https://github.com/Cleanuparr/Cleanuparr/releases/download/v2.10.8/Cleanuparr-2.10.8-linux-amd64.zip"
-    amd64.sha256 = "9c44363d1e2f4986c51a4af2e24650c065f82d46c6d9c55fa7a176eb39944879"
-    arm64.url = "https://github.com/Cleanuparr/Cleanuparr/releases/download/v2.10.8/Cleanuparr-2.10.8-linux-arm64.zip"
-    arm64.sha256 = "21fb3a7ca5cc8e1a52a2649e56f8fed0f70cf0e8502c685aa47ef4d1e86441c1"
+    amd64.url = "https://github.com/Cleanuparr/Cleanuparr/releases/download/v2.10.9/Cleanuparr-2.10.9-linux-amd64.zip"
+    amd64.sha256 = "fa92b608ff79c49f329877829b14ce9a752c9a7c431720ba5f1b0252c32c5bb7"
+    arm64.url = "https://github.com/Cleanuparr/Cleanuparr/releases/download/v2.10.9/Cleanuparr-2.10.9-linux-arm64.zip"
+    arm64.sha256 = "b2a079bf652fc2917b8a0d1e18b94708fa7b816aa96b9a74dfef87a047d5de22"
 
     autoupdate.strategy = "latest_github_release"
     autoupdate.upstream = "https://github.com/Cleanuparr/Cleanuparr"

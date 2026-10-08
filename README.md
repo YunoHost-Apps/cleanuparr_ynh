@@ -11,7 +11,7 @@ It shall NOT be edited by hand.
 Advanced download manager for the Servarr ecosystem
 
 [![🌐 Official app website](https://img.shields.io/badge/Official_app_website-darkgreen?style=for-the-badge)](https://cleanuparr.github.io/Cleanuparr/)
-[![Version: 2.10.8~ynh1](https://img.shields.io/badge/Version-2.10.8~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/cleanuparr/)
+[![Version: 2.10.9~ynh1](https://img.shields.io/badge/Version-2.10.9~ynh1-rgb(18,138,11)?style=for-the-badge)](https://ci-apps.yunohost.org/ci/apps/cleanuparr/)
 
 <div align="center">
 <a href="https://apps.yunohost.org/app/cleanuparr"><img height="100px" src="https://github.com/YunoHost/yunohost-artwork/raw/refs/heads/main/badges/neopossum-badges/badge_more_info_on_the_appstore.svg"/></a>
