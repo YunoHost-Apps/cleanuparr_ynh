@@ -7,7 +7,7 @@ name = "Cleanuparr"
 description.en = "Advanced download manager for the Servarr ecosystem"
 description.fr = "Gestionnaire avancé de téléchargements pour l'écosystème Servarr"
 
-version = "2.10.10~ynh1"
+version = "2.10.12~ynh2"
 
 maintainers = ["Jean-Benoit"]
 
@@ -48,10 +48,10 @@ ram.runtime = "512M"
     [resources.sources.main]
     in_subdir = true
     format = "zip"
-    amd64.url = "https://github.com/Cleanuparr/Cleanuparr/releases/download/v2.10.10/Cleanuparr-2.10.10-linux-amd64.zip"
-    amd64.sha256 = "c242a9f991e99cc10014d6c2f3a0223f02dfb234bb2b50d0702ef4773049c3b5"
-    arm64.url = "https://github.com/Cleanuparr/Cleanuparr/releases/download/v2.10.10/Cleanuparr-2.10.10-linux-arm64.zip"
-    arm64.sha256 = "8ee79f174bc6d12b2d27b867e24531934622de984466c36ddbfa1ff4309f1c4e"
+    amd64.url = "https://github.com/Cleanuparr/Cleanuparr/releases/download/v2.10.12/Cleanuparr-2.10.12-linux-amd64.zip"
+    amd64.sha256 = "8505dc25f1cf05fb08055531b8e25b01a8bc95b908b58ab1f2712cfaa8c11a53"
+    arm64.url = "https://github.com/Cleanuparr/Cleanuparr/releases/download/v2.10.12/Cleanuparr-2.10.12-linux-arm64.zip"
+    arm64.sha256 = "568c8bfa704f6fe14a24cd5113e8dfa25a1628555571337bd9bf1619bc05934c"
 
     autoupdate.strategy = "latest_github_release"
     autoupdate.upstream = "https://github.com/Cleanuparr/Cleanuparr"
@@ -67,6 +67,8 @@ ram.runtime = "512M"
 
     [resources.permissions]
     main.url = "/"
+    # Preserve Cleanuparr's Bearer tokens when a YunoHost SSO cookie is present.
+    main.auth_header = false
 
     [resources.ports]
     main.default = 11011
