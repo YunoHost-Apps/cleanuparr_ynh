@@ -7,7 +7,7 @@ name = "Cleanuparr"
 description.en = "Advanced download manager for the Servarr ecosystem"
 description.fr = "Gestionnaire avancé de téléchargements pour l'écosystème Servarr"
 
-version = "2.10.10~ynh2"
+version = "2.10.10~ynh1"
 
 maintainers = ["Jean-Benoit"]
 
@@ -67,8 +67,6 @@ ram.runtime = "512M"
 
     [resources.permissions]
     main.url = "/"
-    # Preserve Cleanuparr's Bearer tokens when a YunoHost SSO cookie is present.
-    main.auth_header = false
 
     [resources.ports]
     main.default = 11011
